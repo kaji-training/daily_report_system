@@ -12,7 +12,7 @@ import models.Employee;
 import models.validators.EmployeeValidator;
 import utils.EncryptUtil;
 
-public class EmployeeService {
+public class EmployeeService extends ServiceBase {
     public List<EmployeeView> getPerPage(int page){
         List<Employee> employees = em.createNamedQuery(JpaConst.Q_EMP_GET_ALL, Employee.class)
                 .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
@@ -53,7 +53,7 @@ public class EmployeeService {
     }
 
     public long countByCode(String code) {
-        long employees_count = (long) em.createNameQuery(JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE, Long.class)
+        long employees_count = (long) em.createNamedQuery(JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE, Long.class)
                 .setParameter(JpaConst.JPQL_PARM_CODE, code)
                 .getSingleResult();
 
@@ -64,7 +64,7 @@ public class EmployeeService {
     public List<String> create(EmployeeView ev, String pepper){
         String pass = EncryptUtil.getPasswordEncrypt(ev.getPassword(), pepper);
         ev.setPassword(pass);
-        LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
         ev.setCreatedAt(now);
         ev.setUpdatedAt(now);
         List<String> errors = EmployeeValidator.validate(this, ev, true, true);
