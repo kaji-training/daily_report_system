@@ -57,7 +57,7 @@ public abstract class ActionBase {
 
     }
 
-    protected boolean chechToken() throws ServletException, IOException{
+    protected boolean checkToken() throws ServletException, IOException{
         String _token = getRequestParam(AttributeConst.TOKEN);
 
         if(_token == null || !(_token.equals(getTokenId()))) {
