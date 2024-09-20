@@ -16,7 +16,7 @@
 <input type="date" name="${AttributeConst.REP_DATE.getValue()}" id="${AttributeConst.REP_DATE.getValue()}" value="<fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' />" />
 <br /><br />
 
-<label for="${AttributeConst.REP_TITLE.getValue()}">タイトル</label>
+<label for="${AttributeConst.REP_TITLE.getValue()}">タイトル</label><br />
 <input type="text" name="${AttributeConst.REP_TITLE.getValue()}" id="${AttributeConst.REP_TITLE.getValue()}" value="${report.title}" />
 <br /><br />
 
